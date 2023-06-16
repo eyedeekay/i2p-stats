@@ -19,15 +19,18 @@ func main() {
 		if err := statsite.GenerateIndexPages(); err != nil {
 			log.Fatal(err)
 		}
-		if err := statsite.OutputHomePage(); err != nil {
-			log.Fatal(err)
-		}
+
 		if edgarIsInstalled() {
+			statsite.OutputMarkdownHomePage()
 			cmd := exec.Command("edgar", os.Args[1:]...)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			cmd.Dir = statsite.StatsDirectory
 			cmd.Run()
+		} else {
+			if err := statsite.OutputHomePage(); err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 }

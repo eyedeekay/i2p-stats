@@ -41,6 +41,16 @@ func (s *StatsSite) OutputHomePage() error {
 	return os.WriteFile(index, []byte(htmlBytes), 0644)
 }
 
+func (s *StatsSite) OutputMarkdownHomePage() error {
+	index := filepath.Join(s.StatsDirectory, "README.md")
+	htmlBytes, err := s.Markdown()
+	if err != nil {
+		return err
+	}
+	log.Println("Generating index:", index)
+	return os.WriteFile(index, []byte(htmlBytes), 0644)
+}
+
 func (s *StatsSite) OutputPages() error {
 	for _, stat := range s.Stats {
 		log.Println("Saving stat html:", stat)
