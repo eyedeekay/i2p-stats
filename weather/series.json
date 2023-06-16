@@ -116,6 +116,51 @@
       "ExploratoryBuildRejectedPercent": 24,
       "ExploratoryBuildSucceededPercent": 37,
       "ExploratoryBuildExpiredPercent": 37
+    },
+    {
+      "CollectedDate": "2023-06-16T18:19:35.311329519-04:00",
+      "ExploratoryBuildRejected": 433,
+      "ExploratoryBuildSucceeded": 1219,
+      "ExploratoryBuildExpired": 1219,
+      "ExploratoryBuildRejectedPercent": 15,
+      "ExploratoryBuildSucceededPercent": 42,
+      "ExploratoryBuildExpiredPercent": 42
+    },
+    {
+      "CollectedDate": "2023-06-16T18:33:00.7103847-04:00",
+      "ExploratoryBuildRejected": 590,
+      "ExploratoryBuildSucceeded": 2784,
+      "ExploratoryBuildExpired": 2784,
+      "ExploratoryBuildRejectedPercent": 9,
+      "ExploratoryBuildSucceededPercent": 45,
+      "ExploratoryBuildExpiredPercent": 45
+    },
+    {
+      "CollectedDate": "2023-06-16T18:33:52.402812563-04:00",
+      "ExploratoryBuildRejected": 590,
+      "ExploratoryBuildSucceeded": 2784,
+      "ExploratoryBuildExpired": 2784,
+      "ExploratoryBuildRejectedPercent": 9,
+      "ExploratoryBuildSucceededPercent": 45,
+      "ExploratoryBuildExpiredPercent": 45
+    },
+    {
+      "CollectedDate": "2023-06-16T18:40:58.174294519-04:00",
+      "ExploratoryBuildRejected": 1452,
+      "ExploratoryBuildSucceeded": 786,
+      "ExploratoryBuildExpired": 786,
+      "ExploratoryBuildRejectedPercent": 48,
+      "ExploratoryBuildSucceededPercent": 25,
+      "ExploratoryBuildExpiredPercent": 25
+    },
+    {
+      "CollectedDate": "2023-06-16T18:41:22.488415878-04:00",
+      "ExploratoryBuildRejected": 1452,
+      "ExploratoryBuildSucceeded": 786,
+      "ExploratoryBuildExpired": 786,
+      "ExploratoryBuildRejectedPercent": 48,
+      "ExploratoryBuildSucceededPercent": 25,
+      "ExploratoryBuildExpiredPercent": 25
     }
   ]
 }

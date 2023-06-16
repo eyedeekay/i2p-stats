@@ -190,6 +190,22 @@ func (s Stats) SaveHTML(jsonDir string) error {
 	return os.WriteFile(p, []byte(header+statBytes+footer), 0644)
 }
 
+func (s Stats) SaveMarkdown(jsonDir string) error {
+	statBytes := s.Markdown()
+	var fsp []string
+	fsp = append(fsp, jsonDir)
+	fspb := strings.Split(s.CollectedDate.Format(DateTime), "-")
+	fsp = append(fsp, fspb...)
+	fsd := filepath.Dir(filepath.Join(fsp...))
+	log.Println("fsd", fsd)
+	if err := os.MkdirAll(fsd, 0755); err != nil {
+		return err
+	}
+	p := filepath.Join(fsp...) + ".md"
+	log.Println("  p", p)
+	return os.WriteFile(p, []byte(header+statBytes+footer), 0644)
+}
+
 func LoadStats(jsonStr string) (Stats, error) {
 	var stats Stats
 	err := json.Unmarshal([]byte(jsonStr), &stats)

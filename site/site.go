@@ -61,6 +61,16 @@ func (s *StatsSite) OutputPages() error {
 	return nil
 }
 
+func (s *StatsSite) OutputMarkdownPages() error {
+	for _, stat := range s.Stats {
+		log.Println("Saving stat html:", stat)
+		if err := stat.SaveMarkdown(s.StatsDirectory); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func (s *StatsSite) listSubdirsWithFiles() []string {
 	subdirs := make(map[string]string)
 	log.Println("SUBDIR LISTING HERE")
@@ -138,6 +148,37 @@ func (s StatsSite) GenerateIndexPages() error {
 		}
 		lines += "</ul>"
 		lines += "</div>\n"
+		page := s.sanitize(header + lines + footer)
+		index := filepath.Join(subdir, "index.html")
+		log.Println("Generating index:", index)
+		if err := os.WriteFile(index, []byte(page), 0644); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (s StatsSite) GenerateMarkdownIndexPages() error {
+	log.Println("Generating indices")
+	lsd := s.listSubdirsWithFiles()
+	if lsd == nil || len(lsd) == 0 {
+		return nil
+	}
+	for _, subdir := range lsd {
+		lines := "\n"
+		//lines += `<div id="nav" class="navigation sitecomponent list">`
+		//lines += "<ul>\n"
+		lines += fmt.Sprintf(" - [%s](%s)\n", "/", "/")
+		lines += s.sanitize(fmt.Sprintf(" - [%s](%s)\n", subdir, subdir))
+		files, err := ioutil.ReadDir(subdir)
+		if err != nil {
+			return err
+		}
+		for _, f := range files {
+			lines += fmt.Sprintf(" - [%s](%s)\n", f.Name(), f.Name())
+		}
+		//lines += "</ul>"
+		//lines += "</div>\n"
 		page := s.sanitize(header + lines + footer)
 		index := filepath.Join(subdir, "index.html")
 		log.Println("Generating index:", index)
