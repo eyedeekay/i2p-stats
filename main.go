@@ -2,22 +2,48 @@ package main
 
 import (
 	"log"
+	"os"
+	"os/exec"
+	"path/filepath"
 
 	"github.com/eyedeekay/i2p-stats/site"
 )
 
 func main() {
-	if site, err := site.NewStatsSite("weather"); err != nil {
+	if statsite, err := site.NewStatsSite("weather"); err != nil {
 		log.Fatal(err)
 	} else {
-		if err := site.OutputPages(); err != nil {
+		if err := statsite.OutputPages(); err != nil {
 			log.Fatal(err)
 		}
-		if err := site.GenerateIndexPages(); err != nil {
+		if err := statsite.GenerateIndexPages(); err != nil {
 			log.Fatal(err)
 		}
-		if err := site.OutputHomePage(); err != nil {
+		if err := statsite.OutputHomePage(); err != nil {
 			log.Fatal(err)
+		}
+		if edgarIsInstalled() {
+			cmd := exec.Command("edgar", os.Args[1:]...)
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
+			cmd.Dir = statsite.StatsDirectory
+			cmd.Run()
 		}
 	}
+}
+
+func edgarIsInstalled() bool {
+	_, err := exec.LookPath("edgar")
+	if err != nil {
+		gopath := os.Getenv("GOPATH")
+		if gopath != "" {
+			binPath := filepath.Join(gopath, "bin", "edgar")
+			_, err = os.Stat(binPath)
+			if err == nil {
+				return true
+			}
+		}
+		return false
+	}
+	return true
 }
