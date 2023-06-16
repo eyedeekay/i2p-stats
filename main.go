@@ -25,8 +25,8 @@ func main() {
 			cmd := exec.Command("edgar", os.Args[1:]...)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
-			//TODO set EDGAR_RECURSIVE=true in the cmd environment
-			cmd.Dir = statsite.StatsDirectory
+			cmd.Env = append(os.Environ(), "EDGAR_RECURSIVE=true")
+			//cmd.Dir = statsite.StatsDirectory
 			cmd.Run()
 		} else {
 			if err := statsite.OutputHomePage(); err != nil {
