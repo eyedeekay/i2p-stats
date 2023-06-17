@@ -20,7 +20,9 @@ func docroot() string {
 	i2p := filepath.Join(home, "i2p")
 	eepsite := filepath.Join(i2p, "eepsite")
 	docroot := filepath.Join(eepsite, "docroot")
-	return docroot
+	weather := filepath.Join(docroot, "weather")
+	os.MkdirAll(weather, 0755)
+	return weather
 }
 
 // Get the user's home directory.
@@ -29,7 +31,7 @@ func docroot() string {
 // Build the path to the docroot directory inside the eepsite directory.
 // Return the docroot path.
 
-var runDir = flag.String("dir", ".", "directory to run from")
+var runDir = flag.String("dir", Docroot(), "directory to run from")
 
 func main() {
 	flag.Parse()
@@ -47,7 +49,8 @@ func main() {
 			if err := statsite.OutputMarkdownHomePage(); err != nil {
 				log.Fatal(err)
 			}
-			cmd := exec.Command("edgar", os.Args[1:]...)
+
+			cmd := exec.Command("edgar", flag.Args()...)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			cmd.Env = append(os.Environ(), "EDGAR_RECURSIVE=true")
@@ -64,25 +67,50 @@ func main() {
 				log.Fatal(err)
 			}
 		}
-		gitAddCmd := exec.Command("git", "add", statsite.StatsDirectory)
-		gitAddCmd.Stdout = os.Stdout
-		gitAddCmd.Stderr = os.Stderr
-		gitAddCmd.Run()
+		if gitIsInstalled() {
+			if gitDirExists(*runDir) {
+				gitAddCmd := exec.Command("git", "add", statsite.StatsDirectory)
+				gitAddCmd.Stdout = os.Stdout
+				gitAddCmd.Stderr = os.Stderr
+				gitAddCmd.Run()
+			}
+		}
 	}
 }
 
-func edgarIsInstalled() bool {
-	_, err := exec.LookPath("edgar")
+func appIsInstalled(app string) bool {
+	_, err := exec.LookPath(app)
 	if err != nil {
 		gopath := os.Getenv("GOPATH")
 		if gopath != "" {
-			binPath := filepath.Join(gopath, "bin", "edgar")
+			binPath := filepath.Join(gopath, "bin", app)
 			_, err = os.Stat(binPath)
 			if err == nil {
+				log.Println("found", binPath)
 				return true
 			}
 		}
 		return false
 	}
+	log.Println("found", app)
 	return true
+}
+
+func edgarIsInstalled() bool {
+	return appIsInstalled("edgar")
+}
+
+func gitIsInstalled() bool {
+	return appIsInstalled("git")
+}
+
+func gitDirExists(statsDir string) bool {
+	log.Println("checking if", filepath.Join(statsDir, ".git"), "is a git directory")
+	_, err := os.Stat(filepath.Join(statsDir, ".git"))
+	if err == nil {
+		log.Println("git dir exists")
+	} else {
+		log.Println("git dir does not exist")
+	}
+	return err == nil
 }
