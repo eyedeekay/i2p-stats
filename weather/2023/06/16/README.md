@@ -1,6 +1,6 @@
 
  - [/](/)
- - [/weather/2023/06/16](/weather/2023/06/16)
+ - [/2023/06/16](/2023/06/16)
  - [17:30:20.html](17:30:20.html)
  - [17:30:20.json](17:30:20.json)
  - [17:30:20.md](17:30:20.md)
@@ -57,6 +57,7 @@
  - [23:45:53.md](23:45:53.md)
  - [README.md](README.md)
  - [darklight.css](darklight.css)
+ - [i2plogo.png](i2plogo.png)
  - [index.html](index.html)
  - [showhider.css](showhider.css)
  - [style.css](style.css)

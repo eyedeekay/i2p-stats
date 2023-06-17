@@ -1,57 +1,12 @@
-Exploratory Build Stats Log
----------------------------
+# i2p-stats
 
-### Stats for: 2023-06-16 23:49:58.147361779 -0400 EDT
+This tool gathers statistics from a running I2P router and uses them to generate various ways of organizing and viewing those statistics.
+At this time, the primary way of viewing them is as a static web site, so that it can easily be viewed on an eepsite or shared via github pages.
+It also generates a json file for every stat, which can be fetched by referencing the time and date it was gathered.
+It is intended to be run about every ten minutes, as a cron job, and for the output to be shared on an eepsite.
 
- - Exploratory Build Success Percentage: 21
- - Exploratory Build Rejection Percentage: 56
- - Exploratory Build Expired Percentage: 21
- - Exploratory Build Success: 2656
- - Exploratory Build Reject: 6984
- - Exploratory Build Expired: 2656
+## Cron Example:
 
-### Stats for: 2023-06-16 23:50:51.875636614 -0400 EDT
-
- - Exploratory Build Success Percentage: 21
- - Exploratory Build Rejection Percentage: 56
- - Exploratory Build Expired Percentage: 21
- - Exploratory Build Success: 2656
- - Exploratory Build Reject: 6984
- - Exploratory Build Expired: 2656
-
-### Stats for: 2023-06-17 00:06:07.907374392 -0400 EDT
-
- - Exploratory Build Success Percentage: 31
- - Exploratory Build Rejection Percentage: 37
- - Exploratory Build Expired Percentage: 31
- - Exploratory Build Success: 2134
- - Exploratory Build Reject: 2590
- - Exploratory Build Expired: 2134
-
-### Stats for: 2023-06-17 00:06:59.057714562 -0400 EDT
-
- - Exploratory Build Success Percentage: 31
- - Exploratory Build Rejection Percentage: 37
- - Exploratory Build Expired Percentage: 31
- - Exploratory Build Success: 2134
- - Exploratory Build Reject: 2590
- - Exploratory Build Expired: 2134
-
-### Stats for: 2023-06-17 00:07:09.113852518 -0400 EDT
-
- - Exploratory Build Success Percentage: 31
- - Exploratory Build Rejection Percentage: 37
- - Exploratory Build Expired Percentage: 31
- - Exploratory Build Success: 2134
- - Exploratory Build Reject: 2590
- - Exploratory Build Expired: 2134
-
-### Stats for: 2023-06-17 00:07:23.880559673 -0400 EDT m=+0.105686656
-
- - Exploratory Build Success Percentage: 31
- - Exploratory Build Rejection Percentage: 37
- - Exploratory Build Expired Percentage: 31
- - Exploratory Build Success: 2134
- - Exploratory Build Reject: 2590
- - Exploratory Build Expired: 2134
-
+```
+*/10  * * * * $HOME/go/bin/i2p-stats -dir $HOME/go/src/github.com/eyedeekay/i2p-stats/weather
+```
