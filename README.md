@@ -1,7 +1,12 @@
-# i2p-stats
+Exploratory Build Stats Log
+---------------------------
 
-This tool gathers statistics from a running I2P router and uses them to generate various ways of organizing and viewing those statistics.
-At this time, the primary way of viewing them is as a static web site, so that it can easily be viewed on an eepsite or shared via github pages.
-It also generates a json file for every stat, which can be fetched by referencing the time and date it was gathered.
-It is intended to be run about every ten minutes, as a cron job, and for the output to be shared on an eepsite.
+### Stats for: 2023-06-16 23:49:58.147361779 -0400 EDT m=+0.110589301
+
+ - Exploratory Build Success Percentage: 21
+ - Exploratory Build Rejection Percentage: 56
+ - Exploratory Build Expired Percentage: 21
+ - Exploratory Build Success: 2656
+ - Exploratory Build Reject: 6984
+ - Exploratory Build Expired: 2656
 

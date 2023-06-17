@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
 	"os/exec"
@@ -9,8 +10,31 @@ import (
 	"github.com/eyedeekay/i2p-stats/site"
 )
 
+var Docroot = docroot
+
+func docroot() string {
+	//home := os.Getenv("HOME")
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	i2p := filepath.Join(home, "i2p")
+	eepsite := filepath.Join(i2p, "eepsite")
+	docroot := filepath.Join(eepsite, "docroot")
+	return docroot
+}
+
+// Get the user's home directory.
+// Build the path to the i2p directory inside the home directory.
+// Build the path to the eepsite directory inside the i2p directory.
+// Build the path to the docroot directory inside the eepsite directory.
+// Return the docroot path.
+
+var runDir = flag.String("dir", ".", "directory to run from")
+
 func main() {
-	if statsite, err := site.NewStatsSite("weather"); err != nil {
+	flag.Parse()
+	if statsite, err := site.NewStatsSite(*runDir); err != nil {
 		log.Fatal(err)
 	} else {
 		if edgarIsInstalled() {
