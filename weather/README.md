@@ -721,7 +721,7 @@ Exploratory Build Stats Log
  - Exploratory Build Reject: 3766
  - Exploratory Build Expired: 2317
 
-### Stats for: 2023-06-17 13:54:24.50891813 -0400 EDT m=+0.106092908
+### Stats for: 2023-06-17 13:54:24.50891813 -0400 EDT
 
  - Exploratory Build Success Percentage: 42
  - Exploratory Build Rejection Percentage: 15
@@ -729,4 +729,13 @@ Exploratory Build Stats Log
  - Exploratory Build Success: 3527
  - Exploratory Build Reject: 1307
  - Exploratory Build Expired: 3527
+
+### Stats for: 2023-06-17 14:04:27.26459705 -0400 EDT m=+0.108866220
+
+ - Exploratory Build Success Percentage: 19
+ - Exploratory Build Rejection Percentage: 60
+ - Exploratory Build Expired Percentage: 19
+ - Exploratory Build Success: 2486
+ - Exploratory Build Reject: 7637
+ - Exploratory Build Expired: 2486
 
