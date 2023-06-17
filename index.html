@@ -41,8 +41,8 @@
               </a>
             </li>
             <li>
-              <a href="weather/2023/06/17/00:30:18.html">
-                weather/2023/06/17/00:30:18
+              <a href="weather/2023/06/17/00:31:54.html">
+                weather/2023/06/17/00:31:54
               </a>
             </li>
             <li>
@@ -74,6 +74,11 @@
       Cron Example:
     </h2>
     <pre><code>*/10  * * * * $HOME/go/bin/i2p-stats -dir $HOME/go/src/github.com/eyedeekay/i2p-stats/weather
+</code></pre>
+    <h2>
+      Loop Example:
+    </h2>
+    <pre><code>while true; do i2p-stats -dir=$(pwd)/weather &amp;&amp; git add weather &amp;&amp; git commit -am &quot;checkin&quot;;  git push --all; sleep 10m; done
 </code></pre>
     <div id="sourcecode">
       <span id="sourcehead">

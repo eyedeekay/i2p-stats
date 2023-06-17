@@ -10,3 +10,9 @@ It is intended to be run about every ten minutes, as a cron job, and for the out
 ```
 */10  * * * * $HOME/go/bin/i2p-stats -dir $HOME/go/src/github.com/eyedeekay/i2p-stats/weather
 ```
+
+## Loop Example:
+
+```
+while true; do i2p-stats -dir=$(pwd)/weather && git add weather && git commit -am "checkin";  git push --all; sleep 10m; done
+```
