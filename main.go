@@ -13,7 +13,6 @@ import (
 var Docroot = docroot
 
 func docroot() string {
-	//home := os.Getenv("HOME")
 	home, err := os.UserHomeDir()
 	if err != nil {
 		log.Fatal(err)
@@ -34,6 +33,7 @@ var runDir = flag.String("dir", ".", "directory to run from")
 
 func main() {
 	flag.Parse()
+	os.Chdir(*runDir)
 	if statsite, err := site.NewStatsSite(*runDir); err != nil {
 		log.Fatal(err)
 	} else {
