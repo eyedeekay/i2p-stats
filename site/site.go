@@ -179,7 +179,7 @@ func (s StatsSite) GenerateMarkdownIndexPages() error {
 		}
 		//lines += "</ul>"
 		//lines += "</div>\n"
-		page := s.sanitize(header + lines + footer)
+		page := s.sanitize(lines)
 		index := filepath.Join(subdir, "index.html")
 		log.Println("Generating index:", index)
 		if err := os.WriteFile(index, []byte(page), 0644); err != nil {
