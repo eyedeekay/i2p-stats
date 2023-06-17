@@ -40,6 +40,10 @@ func main() {
 				log.Fatal(err)
 			}
 		}
+		gitAddCmd := exec.Command("git", "add", statsite.StatsDirectory)
+		gitAddCmd.Stdout = os.Stdout
+		gitAddCmd.Stderr = os.Stderr
+		gitAddCmd.Run()
 	}
 }
 
