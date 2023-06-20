@@ -3887,6 +3887,15 @@
       "ExploratoryBuildRejectedPercent": 21,
       "ExploratoryBuildSucceededPercent": 39,
       "ExploratoryBuildExpiredPercent": 39
+    },
+    {
+      "CollectedDate": "2023-06-20T11:13:37.795743057-04:00",
+      "ExploratoryBuildRejected": 2455,
+      "ExploratoryBuildSucceeded": 1730,
+      "ExploratoryBuildExpired": 1730,
+      "ExploratoryBuildRejectedPercent": 41,
+      "ExploratoryBuildSucceededPercent": 29,
+      "ExploratoryBuildExpiredPercent": 29
     }
   ]
 }
